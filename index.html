@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khảo sát nghiên cứu</title>
+</head>
+
+<body>
+    <p>Đang chuyển đến bảng khảo sát. Vui lòng đợi trong giây lát...</p>
+
+    <script>
+        // =========================================================
+        // EXPERIMENTAL CONDITIONS
+        // 01 = Low Severity × Company
+        // 02 = Low Severity × Influencer
+        // 03 = High Severity × Company
+        // 04 = High Severity × Influencer
+        // =========================================================
+
+        const surveyLinks = [
+            "https://docs.google.com/forms/d/e/1FAIpQLSeAhImt4HKyWHsyRpBtSmUHwzzL7UupF7OkL8F3TUIlYPoD4A/viewform?usp=publish-editor",
+            "https://docs.google.com/forms/d/e/1FAIpQLSeMcZeb-ipL13bpb5buyVOHQI6EvBjlaJttH2d3Oe5g9hi6EQ/viewform?usp=publish-editor",
+            "https://docs.google.com/forms/d/e/1FAIpQLSfmN-JeIRnJnOMU0wMUSdOjMglNb-kgvgXGcYNnSD0S-93G7w/viewform?usp=publish-editor",
+            "https://docs.google.com/forms/d/e/1FAIpQLSefopBNMAQOZSsMtDUvIF85zQHazFXVs29OcaYXrEw0q7B94g/viewform?usp=publish-editor"
+        ];
+
+        // Check whether this browser has already been assigned
+        let assignedCondition = localStorage.getItem("surveyCondition");
+
+        if (assignedCondition === null) {
+            // Randomly assign one of four conditions: 0, 1, 2, or 3
+            assignedCondition = Math.floor(Math.random() * surveyLinks.length);
+
+            // Remember the assigned condition in this browser
+            localStorage.setItem("surveyCondition", assignedCondition);
+        } else {
+            assignedCondition = parseInt(assignedCondition, 10);
+        }
+
+        // Redirect to the corresponding Google Form
+        window.location.replace(surveyLinks[assignedCondition]);
+    </script>
+</body>
+</html>
